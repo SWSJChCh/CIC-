@@ -234,7 +234,7 @@ def cicMovement(VEGFArray, cellArray, length, width):
                                 mig = True
                                 break
                         #Cell has been detected
-                        if mig == True:
+                        if mig == True or i[0] == 0:
                             try:
                                 if cellArray[i[0] + 1, i[1]] == 0:
                                     cellArray[i[0], i[1]] = 0
@@ -306,7 +306,7 @@ def cicMovement(VEGFArray, cellArray, length, width):
                             mig = True
                             break
                     #Cell has been detected
-                    if mig == True:
+                    if mig == True or (i[0] == width - 1 and i[1] == 0):
                         try: 
                             if cellArray[i[0] - 1, i[1] + 1] == 0 and i[0] - 1 >= 0:
                                 cellArray[i[0], i[1]] = 0
@@ -375,7 +375,7 @@ def cicMovement(VEGFArray, cellArray, length, width):
                             mig = True
                             break
                     #Cell has been detected
-                    if mig == True:
+                    if mig == True or i[0] == width - 1:
                         if cellArray[i[0] - 1, i[1]] == 0 and i[0] - 1 >= 0:
                             cellArray[i[0], i[1]] = 0
                             cellArray[i[0] - 1, i[1]] = 1
@@ -442,7 +442,7 @@ def cicMovement(VEGFArray, cellArray, length, width):
                             mig = True
                             break
                     #Cell has been detected
-                    if mig == True:
+                    if mig == True or (i[0] == width - 1 and i[1] == length - 1):
                         if cellArray[i[0] - 1, i[1] - 1] == 0 and i[0] - 1 >= 0 \
                             and i[1] - 1 >= 0:
                             cellArray[i[0], i[1]] = 0
@@ -509,7 +509,7 @@ def cicMovement(VEGFArray, cellArray, length, width):
                             mig = True
                             break
                     #Cell has been detected
-                    if mig == True:
+                    if mig == True or i[1] == 0:
                         try: 
                             if cellArray[i[0], i[1] + 1] == 0:
                                 cellArray[i[0], i[1]] = 0
@@ -579,7 +579,7 @@ def cicMovement(VEGFArray, cellArray, length, width):
                             mig = True
                             break
                     #Cell has been detected
-                    if mig == True:
+                    if mig == True or (i[0] == 0 and i[1] == 0):
                         try: 
                             if cellArray[i[0] + 1, i[1] + 1] == 0:
                                 cellArray[i[0], i[1]] = 0
@@ -647,7 +647,7 @@ def cicMovement(VEGFArray, cellArray, length, width):
                         if m == 1:
                             mig = True
                             break
-                    if mig == True:
+                    if mig == True or (i[1] == length - 1):
                         if cellArray[i[0], i[1] - 1] == 0 and i[1] - 1 >= 0 :
                             cellArray[i[0], i[1]] = 0
                             cellArray[i[0], i[1] - 1] = 1
@@ -714,7 +714,7 @@ def cicMovement(VEGFArray, cellArray, length, width):
                         if m == 1:
                             mig = True
                             break
-                    if mig == True:
+                    if mig == True or (i[0] == 0 and i[1] == length - 1):
                         try: 
                             if cellArray[i[0] + 1, i[1] - 1] == 0 and i[1] - 1 >= 0:
                                 cellArray[i[0], i[1]] = 0
@@ -770,7 +770,7 @@ def main():
     #Initialise domain length list
     lengthList = domainLengths(simTime)
     #Initialise domain length
-    L = lengthList[0]
+    L = lengthList[-1]
     #Initialise cell and VEGF lattices
     cellArray = np.zeros((W, L))
     VEGFArray = createVEGFArray(W, L, c0)
